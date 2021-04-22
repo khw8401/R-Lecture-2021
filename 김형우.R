@@ -1,7 +1,7 @@
 ---
-title: "EXERCISE 3"
+title: "김형우"
 author: "KIMHYEONGWOO"
-date: '2021 4 21 '
+date: '2021 4 22 '
 output: html_document
 ---
 
@@ -29,12 +29,32 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-### 문제1
+1. 
 x <- c(1:100)
 y <- c(1:100)
 x <- x[x%%3==0]
 y <- y[y%%4==0]
-### 문제2
+
+2.
 intersect(x,y)
 sum(intersect(x,y))
 
+3.
+?airquality
+New York
+
+4.
+F
+
+5.
+?airquality
+max(airquality$Wind)
+
+6.
+sum(is.na(airquality))
+7.
+?quakes
+Fiji
+
+8.
+max(quakes$mag)
