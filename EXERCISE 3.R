@@ -1,0 +1,8 @@
+plot(cars)
+plot(cars, col='red')
+plot(cars, col='red', xlab='거리', ylab='속도')
+plot(cars, col='red', xlab='거리', ylab='속도',pch=18)
+str(iris)
+head(iris)
+plot(iris)
+tips()
