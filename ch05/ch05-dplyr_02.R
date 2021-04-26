@@ -1,5 +1,5 @@
 #dplyr 라이브러리를 이용한 데이터 가공
-# filter, select, arrang, group_by$summarize, mutate
+# filter, select, arrange, group_by$summarize, mutate
 # %>%
 library(dplyr)
 library(gapminder)

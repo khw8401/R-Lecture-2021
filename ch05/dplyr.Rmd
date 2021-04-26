@@ -1,0 +1,147 @@
+---
+title: "김형우"
+author: "KIMHYEONGWOO"
+date: '2021 4 26 '
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### dplyr
+
+# 1번
+```{r}
+library(dplyr)
+library(ggplot2)
+displ5 <- mpg %>% filter(displ >= 5) %>%
+  summarise(hwy_avg=mean(hwy))
+displ4 <- mpg %>% filter(displ <=4) %>%
+  summarise(hwy_avg=mean(hwy))
+displ4
+  
+
+```
+
+# 2번
+```{r}
+audi.cty.avg <- mpg %>%
+  filter(manufacturer=='audi')%>%
+summarise(cty_avg=mean(cty))
+audi.cty.avg
+
+toyota.cty.avg <- mpg %>%
+  filter(manufacturer=='toyota')%>%
+summarise(cty_avg = mean(cty))
+toyota.cty.avg
+  
+```
+
+# 3번
+```{r}
+che.hwy.avg <- mpg %>%
+  filter(manufacturer=='chevrolet')%>%
+  summarise(che.avg=mean(hwy))
+che.hwy.avg
+
+ford.hwy.avg <- mpg%>%
+  filter(manufacturer=='ford')%>%
+  summarise(hwy_avg=mean(hwy))
+ford.hwy.avg
+
+honda.hwy.avg <- mpg%>%
+  filter(manufacturer=='honda')%>%
+  summarise(hwy_avg=mean(hwy))
+honda.hwy.avg
+```
+
+# 4번
+```{r}
+select(mpg,class,cty)
+```
+
+# 5번
+```{r}
+select(mpg,class,cty)
+
+compact.cty.avg<- mpg%>%
+  filter(class=='compact')%>%
+  summarise(cty_avg = mean(cty))
+
+  compact.cty.avg
+
+ suv.cty.avg<- mpg%>%
+    filter(class=='suv')%>%
+    summarise(cty_avg = mean(cty))
+
+ suv.cty.avg
+
+```
+
+# 6번 
+```{r}
+mpg %>%
+   filter(manufacturer=='audi')%>%
+ arrange(desc(hwy))%>%
+   head(5)
+```
+
+# 7 - 1번
+```{r}
+ mpg$total <- (mpg$cty + mpg$hwy)
+ mean(mpg$total)
+```
+
+#7 - 2번
+```{r}
+ mpg$total <- (mpg$cty + mpg$hwy)/2
+ mean(mpg$total)
+```
+
+#7 - 3번
+```{r}
+
+```
+
+#7 - 4번
+```{r}
+```
+
+#8번
+```{r}
+mpg%>%
+   group_by(class)%>%
+    summarise(cty.avg=mean(cty))
+```
+
+#9번
+```{r}
+mpg%>%
+   group_by(class)%>%
+  arrange(desc(class))%>%
+    summarise(cty.avg=mean(cty))
+  
+```
+
+#10번
+```{r}
+mpg%>%
+  group_by(manufacturer)%>%
+  summarise(hwy.avg=mean(cty))%>%
+  arrange(manufacturer)%>%
+head(3)
+    
+```
+
+#11번
+```{r}
+mpg%>%
+   filter(class=='compact')%>%
+   group_by(manufacturer)%>%
+   summarise(sum=n())%>%
+   arrange(desc(sum))
+```
+
+
+
