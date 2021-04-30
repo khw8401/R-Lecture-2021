@@ -1,0 +1,52 @@
+# 영희의 물리 실험
+library(scatterplot3d)
+
+
+x <- c(3,6,3,6.)
+u <- c(10,10,10,20.)
+y <- c(4.65,5.9,6.7,8.02)
+s <- scatterplot3d(x,u,y,
+              xlim = 2:7 ,ylim = 7:23, zlim = 0:10, 
+              pch = 20,type = 'h')
+              
+model <- lm(y ~ x + u) # y=f(x,u)
+coef(model)
+
+s$plane3d(model)
+
+#오차 분석
+fitted(model)
+y
+residuals(model) # y - fitted(model)
+
+# 평균 제곱 오차
+mse = deviance(model)/length(y)
+mse
+
+# 새로운 데이터에 대한 예측
+nx <-  c(7,5,5)
+nu <-  c(15,12.)
+new_data <-  data.frame( x = nx , u = nu)
+ny <- predict(model, new_data)
+
+s <- scatterplot3d(nx,nu,ny,
+                   xlim = 2:10 ,ylim = 7:23, zlim = 0:10, 
+                   pch = 20,type = 'h' , col='red')
+s$plane3d(model)
+
+summary(model)
+
+# trees data 
+head(trees)
+dim(trees)
+summary(trees)
+scatterplot3d(trees$Girth, trees$Height, trees$Volume)
+
+# 모델링
+tm <- lm(Volume ~ Girth + Height, data= trees)
+tm
+summary(tm)
+
+# 예측 
+ndata <- data.frame(Girth=c(8.25 ,13, 19), Height=c(72, 86, 85))
+predict(tm, ndata)
