@@ -7,7 +7,7 @@ setwd('C:/workspace/R')
 library(httr)
 library(jsonlite)
 library(leaflet)
-
+library(stringr)
 dj <- read.csv('data/대전.csv',fileEncoding='UTF-8')
 dj
 addr <- dj$addr[1]
@@ -45,3 +45,23 @@ for (i in 1:nrow(dj)) {
 dj$lng <- lngs
 dj$lat <- lats
 View(dj)
+
+# 지도위에 표시하기
+leaflet(dj) %>% 
+  setView(lng = 127.3, lat = 36.35, zoom = 12) %>% 
+  addTiles() %>% 
+  addMarkers(lng =~lng,lat = ~lat, popup=~addr,label = ~place)
+
+leaflet(dj) %>% 
+  setView(lng = mean(dj$lng), lat =mean(dj$lat), zoom = 12) %>% 
+  addTiles() %>% 
+  addCircles(lng =~lng,lat = ~lat, popup=~addr,label = ~place,
+             weight = 1, radius = ~pop/1000)
+
+dj$color <- ifelse(str_length(dj$place)>5, '#dd0022','#1133ee')
+
+leaflet(dj) %>% 
+  setView(lng = mean(dj$lng), lat =mean(dj$lat), zoom = 12) %>% 
+  addTiles() %>% 
+  addCircles(lng =~lng,lat = ~lat, popup=~addr,label = ~place,
+             weight = 1, radius = ~pop/1000, color = ~color)
