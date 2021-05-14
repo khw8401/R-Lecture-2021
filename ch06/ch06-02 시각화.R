@@ -80,10 +80,10 @@ gapminder %>%
   coord_flip()
 
 # 3.변화 추세
-gapminder %>% 
   filter(country=='Korea, Rep.') %>% 
   ggplot(aes(year, lifeExp, col=country))+
   geom_point() +
+gapminder %>% 
   geom_line(col='blue')
 
 # 4. 여러 데이터의 변화 추세
