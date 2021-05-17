@@ -1,43 +1,46 @@
 getwd()
 library(dplyr)
 library(ggplot2)
+library(dplyr)
+library(ggplot2)
+library(gapminder)
 
-y_trade <- read.csv('project/y_trade.csv')
-y_trade
+trade <- read.csv('project/최종통합.csv')
+trade
 View(y_trade)
 
-y_trade %>% 
-  filter(계약연도==2016)  %>% select(시군구,전용면적) %>% 
-  group_by(시군구) %>% summarise(avg_m16=mean(전용면적))
-y_trade %>% 
-  filter(계약연도==2017)  %>% select(시군구,전용면적) %>% 
-  group_by(시군구) %>% summarise(avg_m17=mean(전용면적))
-y_trade %>% 
-  filter(계약연도==2018)  %>% select(시군구,전용면적) %>% 
-  group_by(시군구) %>% summarise(avg_m18=mean(전용면적))
-y_trade %>% 
-  filter(계약연도==2019)  %>% select(시군구,전용면적) %>% 
-  group_by(시군구) %>% summarise(avg_m19=mean(전용면적))
-y_trade %>% 
-  filter(계약연도==2020)  %>% select(시군구,전용면적) %>% 
-  group_by(시군구) %>% summarise(avg_m20=mean(전용면적))
+trade %>% 
+  filter(계약연도==2016)  %>% 
+  group_by(trade$구,trade$계약연도) %>% 
+  ggplot(aes(구,거래금액,group(계약연도)))
 
-y_trade %>% 
-  filter(계약연도==2016)  %>% select(시군구,전용면적,거래금액) %>% 
-  summarise(avg_m16=mean(전용면적),avg_p16=mean(거래금액))
-y_trade %>% 
-  filter(계약연도==2017)  %>% select(시군구,전용면적,거래금액) %>% 
-  summarise(avg_m16=mean(전용면적),avg_p16=mean(거래금액))
-y_trade %>% 
-  filter(계약연도==2018)  %>% select(시군구,전용면적,거래금액) %>% 
-  summarise(avg_m16=mean(전용면적),avg_p16=mean(거래금액))
-y_trade %>% 
-  filter(계약연도==2019)  %>% select(시군구,전용면적,거래금액) %>% 
-  summarise(avg_m16=mean(전용면적),avg_p16=mean(거래금액))
-y_trade %>% 
-  filter(계약연도==2020)  %>% select(시군구,전용면적,거래금액) %>% 
-  summarise(avg_m16=mean(전용면적),avg_p16=mean(거래금액))
+trade %>% 
+  grup
+  ggplot(aes(계약연도,거래금액,group(구구))) +
+  geom_point(stat='identity',alpha=0.2,position = 'jitter')
 
+trade %>% 
+ filter()
 
+trade %>% 
+  filter(거래금액)  %>% 
+  group_by(구,계약연도) %>% 
+  summarise(avg_m=mean(거래금액))
 
+trade %>% 
+  ggplot(aes(계약연도,거래금액))+
+  geom_point()
+  
+trade %>% 
+  group_by(구,계약연도) %>% 
+  select(구,거래금액) %>%
+  ggplot(aes(구,거래금액))+
+  geom_point()
 
+avg_p <- trade$거래금액
+avg_y <- trade$계약연도
+
+ggplot(trade,aes(x=계약연도))+
+  geom_bar()
+
+trade %>% 
